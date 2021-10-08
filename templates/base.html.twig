@@ -9,6 +9,7 @@
     {% endblock %}
 
     {% block javascripts %}
+        <script></script>
     {% endblock %}
 </head>
 <div class="container">
@@ -17,8 +18,10 @@
             <div class="navbar-start">
                 <a class="navbar-item" href="{{ path('dev_index') }}">Accueil</a>
                 {% if app.user %}
-                    <a class="navbar-item" href="{{ path('langage_ajouter') }}">Ajouter un langage de programmation</a>
-
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <a class="navbar-item" href="{{ path('langage_ajouter') }}">Ajouter un langage de
+                            programmation</a>
+                    {% endif %}
                 {% endif %}
             </div>
             <div class="navbar-end">

@@ -10,8 +10,6 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
-
-
     private $userPasswordHasherInterface;
 
     public function __construct(UserPasswordHasherInterface $userPasswordHasherInterface)
@@ -25,10 +23,18 @@ class AppFixtures extends Fixture
             ->setNom("Angular")
             ->setImage("angular.png");
         $manager->persist($angular);
-        $react = (new Langage())
-            ->setNom("React")
-            ->setImage("react.png");
-        $manager->persist($react);
+        $svelte = (new Langage())
+            ->setNom("Svelte")
+            ->setImage("svelte.png");
+        $manager->persist($svelte);
+        $spring = (new Langage())
+            ->setNom("Spring")
+            ->setImage("spring.png");
+        $manager->persist($spring);
+        $vue = (new Langage())
+            ->setNom("Vue")
+            ->setImage("vue.png");
+        $manager->persist($vue);
         $callj = (new Developpeur())
             ->setRoles(["ROLE_ADMIN", "ROLE_USER"])
             ->setEmail("caliendo@hotmail.fr")
@@ -46,7 +52,8 @@ class AppFixtures extends Fixture
             ->setEmail("bob@hotmail.fr")
             ->setPseudo("Bob")
             ->addLangage($angular)
-            ->addLangage($react);
+            ->addLangage($spring)
+            ->addLangage($svelte);
         $bob->setPassword(
             $this->userPasswordHasherInterface->hashPassword(
                 $bob,
@@ -58,7 +65,8 @@ class AppFixtures extends Fixture
             ->setRoles(["ROLE_USER"])
             ->setEmail("marcel@hotmail.fr")
             ->setPseudo("Marcel")
-            ->addLangage($angular);
+            ->addLangage($angular)
+            ->addLangage($vue);
         $marcel->setPassword(
             $this->userPasswordHasherInterface->hashPassword(
                 $marcel,
@@ -66,6 +74,8 @@ class AppFixtures extends Fixture
             )
         );
         $manager->persist($marcel);
+        $manager->flush();
+
         $manager->flush();
     }
 }

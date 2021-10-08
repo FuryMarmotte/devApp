@@ -43,8 +43,7 @@ class DeveloppeurRepository extends ServiceEntityRepository implements PasswordU
             ->setParameter('langage', $langage)
             ->orderBy('d.pseudo', 'ASC')
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
 
     // /**
